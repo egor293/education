@@ -8,3 +8,5 @@ assert days_of_month('January')==31,days_of_month('January')
 assert days_of_month('january')=='error: wrong month name, start from capital letter',days_of_month('january')
 assert days_of_month('afdadf')=='error: wrong month name, start from capital letter',days_of_month('afdadf')
 assert days_of_month('February')=='29/28',days_of_month('February')
+
+# Красивое
