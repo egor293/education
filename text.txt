@@ -1,5 +1,0 @@
-name = input('Имя')
-age = input('Возраст')
-location = input('Страна')
-print(f'')
-
