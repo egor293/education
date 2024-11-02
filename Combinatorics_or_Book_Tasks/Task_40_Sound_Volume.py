@@ -14,6 +14,7 @@ def sound_volume(volume):
 
 assert sound_volume(130)=='Отбойный молоток',sound_volume(130)
 assert sound_volume(100)=='Будильник or Газовая газонокосилка',sound_volume(100)
+# В задаче может подаваться громкость между, например, молотком и газонокосилкой. Не учтено.
 
 
 
