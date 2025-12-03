@@ -1,23 +1,29 @@
-def build_trie(tmplts: list[str]):
-    edges = [{} for i in range(sum(map(len, tmplts)))]
-    output = []
-    i = 1
-    for k, tmp in enumerate(tmplts):
-        for j, ch in enumerate(tmp):
-            if ch not in edges[j]:    
-                edges[j][ch] = i
-            
-            else:
-                continue
-            i += 1 
-            output.append([])
+def build_trie(patterns: list[str]):
+    # edges[u][ch] = v — из узла u по символу ch переход в v
+    edges = [{} ]  # edges[0] — корень
+    # output[u] — список номеров шаблонов, которые заканчиваются в узле u
+    output = [[]]
+    
+    node_cnt = 1  # следующий свободный номер узла
+    
+    for pat_id, pat in enumerate(patterns):
+        u = 0  # начинаем с корня
+        for ch in pat:
+            if ch not in edges[u]:
+                # создаём новый узел
+                edges[u][ch] = node_cnt
+                edges.append({})      # новый словарь переходов
+                output.append([])     # новый список выводов
+                node_cnt += 1
+            u = edges[u][ch]  # переходим дальше
+        # по окончании шаблона записываем его номер в output
+        output[u].append(pat_id)
+    
+    return edges, output, node_cnt
 
-        else:
-            edges.append({})
-            output.insert(j, k)
-        
-        
-    return edges, output
 
-print(build_trie(["ababac", "bababab", "ab", "bab"]))
-
+# Тест
+edges, output, total_nodes = build_trie(["ababac", "bababab", "ab", "bab"])
+print("Всего узлов:", total_nodes)
+print("edges:", [dict(e) for e in edges])  # для красивого вывода
+print("output:", output)
